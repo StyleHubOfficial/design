@@ -109,55 +109,11 @@
             box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Navigation item styling */
-        .nav-item {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            color: #E0E7FF;
-            transition: all 0.2s;
-        }
-        
-        .nav-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .nav-item.active {
-            background-color: rgba(0, 255, 255, 0.2);
-            color: var(--color-accent);
-        }
-
-        /* AI feature button styling */
-        .ai-feature-btn {
-            transition: all 0.2s;
-        }
-        
-        .ai-feature-btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* Achievement badge styling */
-        .achievement-badge {
-            transition: all 0.3s;
-        }
-        
-        .achievement-badge:hover {
-            transform: scale(1.05);
-        }
-
         /* Hide content until loading is done */
         #app-container.hidden {
             opacity: 0;
         }
         
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .mobile-hidden {
-                display: none;
-            }
-        }
     </style>
 </head>
 
@@ -377,4 +333,495 @@
                                         <span id="stress-level-display" class="font-semibold text-red-400">High</span> 
                                     </div>
                                     <div class="flex justify-between items-center">
-                                        
+                                        <span>This Week's Reading:</span>
+                                        <span class="font-semibold">3.5 Hours</span>
+                                    </div>
+                                    <!-- Animated Charts Placeholder -->
+                                    <div class="h-16 bg-black/20 rounded-lg flex items-center justify-center">
+                                        <i data-lucide="bar-chart-2" class="w-8 h-8 text-cyan-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ACHIEVEMENTS VIEW (Feature 5) -->
+                    <div id="view-achievements" class="hidden space-y-8">
+                        <div id="confetti-container" class="fixed inset-0 pointer-events-none z-50"></div>
+                        <h2 class="text-3xl font-bold mb-6">Your Reading Achievements</h2>
+
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+                            <!-- Unlocked Badge -->
+                            <div class="glassmorphism p-4 rounded-xl text-center card-hover transition duration-300 bg-green-900/40" id="badge-focus-master">
+                                <i data-lucide="crown" class-="w-12 h-12 mx-auto mb-2 text-yellow-400"></i>
+                                <div class="font-bold text-lg">Focus Master</div>
+                                <p class="text-xs text-gray-400">Completed 5 continuous focus sessions.</p>
+                                <button onclick="triggerConfetti('Focus Master Unlocked!')" class="mt-2 text-xs text-cyan-400 hover:underline">Celebrate!</button>
+                            </div>
+                            
+                            <!-- Locked Badge -->
+                            <div class="glassmorphism p-4 rounded-xl text-center opacity-50 card-hover transition duration-300">
+                                <i data-lucide="book-open" class="w-12 h-12 mx-auto mb-2 text-gray-500"></i>
+                                <div class="font-bold text-lg">Speed Reader</div>
+                                <p class="text-xs text-gray-400">Read 10 articles above 400 WPM.</p>
+                            </div>
+
+                            <div class="glassmorphism p-4 rounded-xl text-center card-hover transition duration-300">
+                                <i data-lucide="trending-up" class="w-12 h-12 mx-auto mb-2 text-green-400"></i>
+                                <div class="font-bold text-lg">Consistency King</div>
+                                <p class="text-xs text-gray-400">Reading streak of 7 days active.</p>
+                            </div>
+
+                            <div class="glassmorphism p-4 rounded-xl text-center opacity-50 card-hover transition duration-300">
+                                <i data-lucide="scale" class="w-12 h-12 mx-auto mb-2 text-gray-500"></i>
+                                <div class="font-bold text-lg">Balanced Mind</div>
+                                <p class="text-xs text-gray-400">Maintained balanced Bias score for a month.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SETTINGS VIEW (Feature 4, 8, 10) -->
+                    <div id="view-settings" class="hidden space-y-8 max-w-2xl">
+                        <h2 class="text-3xl font-bold mb-6">Advanced Personalization & Sync</h2>
+                        
+                        <!-- AI Personal Newsroom (Feature 4) -->
+                        <div class="glassmorphism p-6 rounded-xl space-y-4">
+                            <h3 class="text-xl font-bold flex items-center"><i data-lucide="wand-2" class="w-5 h-5 mr-2"></i> AI Personal Newsroom</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <div class="bg-pink-600/70 p-2 rounded-full flex items-center transition duration-300 hover:bg-pink-500">
+                                    <span class="mr-2">Politics</span>
+                                    <i data-lucide="x" class="w-4 h-4 cursor-pointer"></i>
+                                </div>
+                                <div class="bg-blue-600/70 p-2 rounded-full flex items-center transition duration-300 hover:bg-blue-500">
+                                    <span class="mr-2">Tech</span>
+                                    <i data-lucide="x" class="w-4 h-4 cursor-pointer"></i>
+                                </div>
+                                <button class="bg-cyan-600 text-black py-2 px-4 rounded-full font-bold hover:bg-cyan-500 transition duration-200">Surprise Me</button>
+                            </div>
+
+                            <p class="text-sm text-gray-300">Time-of-Day Optimization: Your evening digest is set for 7:30 PM.</p>
+                        </div>
+                        
+                        <!-- Smart Sync & Offline (Feature 10) -->
+                        <div class="glassmorphism p-6 rounded-xl space-y-4">
+                            <h3 class="text-xl font-bold flex items-center"><i data-lucide="wifi" class="w-5 h-5 mr-2"></i> Offline & Smart Sync</h3>
+                            <div class="flex items-center justify-between p-3 bg-black/30 rounded-lg">
+                                <span>Sync Status:</span>
+                                <div class="flex items-center">
+                                    <span id="sync-status" class="text-green-400 font-semibold mr-2">Complete</span>
+                                    <!-- Animated Sync Icon -->
+                                    <i data-lucide="loader" class="w-5 h-5 text-green-400 animate-spin-slow" id="sync-icon"></i>
+                                </div>
+                            </div>
+                            <button onclick="simulateSync()" class="bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-500 transition">Force Sync Digest</button>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+        <!-- ========== JAVASCRIPT: LOGIC AND LLM INTEGRATION (TYPE MODULE REQUIRED FOR FIREBASE IMPORTS) ========== -->
+    <script type="module">
+        // --- FIREBASE IMPORTS ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        
+        // --- GLOBAL STATE ---
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        let db, auth;
+        let userId = null;
+        let isAuthReady = false;
+        
+        let currentPage = 'news';
+        let pomodoroState = 'stopped'; // 'stopped', 'focus', 'break'
+        let pomodoroTime = 25 * 60; // 25 minutes in seconds
+        let pomodoroInterval = null;
+        
+        const loader = document.getElementById('app-loader');
+        const appContainer = document.getElementById('app-container');
+        const contentViews = {
+            news: document.getElementById('view-news'),
+            dashboard: document.getElementById('view-dashboard'),
+            achievements: document.getElementById('view-achievements'),
+            settings: document.getElementById('view-settings')
+        };
+        const navItems = document.querySelectorAll('.nav-item');
+        const pomodoroDisplay = document.getElementById('pomodoro-timer');
+        const pageTitle = document.getElementById('page-title');
+        const authStatus = document.getElementById('auth-status');
+        const ARTICLE_CONTENT_ELEMENT = document.getElementById('original-article-text');
+
+        // --- CORE UTILITY: CUSTOM ALERT ---
+        function alertUser(title, message) {
+            const existingAlert = document.getElementById('custom-alert');
+            if (existingAlert) existingAlert.remove();
+
+            const alertBox = document.createElement('div');
+            alertBox.id = 'custom-alert';
+            alertBox.className = 'fixed top-4 right-4 z-50 p-4 rounded-lg glassmorphism shadow-2xl transition duration-500 transform translate-x-full';
+            alertBox.innerHTML = `
+                <h4 class="font-bold text-lg text-cyan-400">${title}</h4>
+                <p class="text-sm text-gray-200">${message}</p>
+            `;
+            document.body.appendChild(alertBox);
+
+            setTimeout(() => {
+                alertBox.style.transform = 'translateX(0)';
+            }, 50);
+            
+            setTimeout(() => {
+                alertBox.style.transform = 'translateX(calc(100% + 16px))';
+                setTimeout(() => alertBox.remove(), 500);
+            }, 4000);
+        }
+
+        // --- CORE UTILITY: GEMINI API CALLER WITH EXPONENTIAL BACKOFF ---
+
+        async function callGeminiApi(userQuery, systemPrompt, maxRetries = 5) {
+            if (!isAuthReady) {
+                console.error("Authentication not ready. Cannot call Gemini API.");
+                alertUser("Authentication Error", "Please wait for the app to initialize.");
+                return null;
+            }
+
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+
+            for (let attempt = 0; attempt < maxRetries; attempt++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        if (response.status === 429 || response.status >= 500) {
+                            console.warn(`API call failed (Status: ${response.status}). Retrying in ${Math.pow(2, attempt)}s...`);
+                            await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
+                            continue;
+                        }
+                        throw new Error(`API call failed with status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text || "Failed to generate content.";
+                    return text;
+
+                } catch (error) {
+                    console.error("Error during Gemini API call:", error);
+                    if (attempt === maxRetries - 1) {
+                        alertUser("API Error", "Failed to communicate with the AI model after multiple retries.");
+                        return null;
+                    }
+                    await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
+                }
+            }
+            return null;
+        }
+
+        // --- LLM FEATURE 1: AI TONE REWRITER ---
+
+        window.rewriteArticleTone = async function(tone) {
+            if (!ARTICLE_CONTENT_ELEMENT) return;
+
+            const outputDiv = document.getElementById('rewritten-article-output');
+            const originalText = ARTICLE_CONTENT_ELEMENT.textContent.trim();
+            const buttons = document.querySelectorAll('.ai-feature-btn');
+            
+            // Set loading state and disable buttons
+            outputDiv.innerHTML = `<span class="text-yellow-400 flex items-center animate-pulse"><i data-lucide="loader" class="w-4 h-4 mr-2"></i> AI is adjusting the tone... (${tone})...</span>`;
+            buttons.forEach(btn => btn.disabled = true);
+            lucide.createIcons(); // Re-render loader icon
+
+            let systemPrompt;
+            const userQuery = `Original article text: "${originalText}"`;
+
+            if (tone === 'simple') {
+                systemPrompt = "You are a friendly teacher. Rewrite the following article text in one or two sentences using vocabulary a 5th grader could easily understand. Start with 'This means:'";
+            } else if (tone === 'dramatic') {
+                systemPrompt = "You are a sensationalist news anchor. Rewrite the following article text using intense, dramatic language and hyperbole. Start with 'SHOCKING REVELATION:'";
+            } else if (tone === 'professional') {
+                systemPrompt = "You are an academic reviewer. Provide a concise, professional, and slightly formal summary of the following article text, focusing on technical impact. Start with 'Technical Assessment:'";
+            }
+
+            const result = await callGeminiApi(userQuery, systemPrompt);
+
+            // Restore state
+            buttons.forEach(btn => btn.disabled = false);
+
+            if (result) {
+                outputDiv.textContent = result;
+            } else {
+                outputDiv.textContent = "Could not generate tone adjustment. Try again.";
+            }
+        }
+        
+        // --- LLM FEATURE 2: DYNAMIC BREAK SUGGESTION ---
+        
+        window.generateWellnessSuggestion = async function() {
+            const suggestionDiv = document.getElementById('break-suggestion');
+            const stressLevelElement = document.getElementById('stress-level-display');
+            
+            // Fallback for stress level if we're not on the dashboard (simulated 'High' or 'Low')
+            const stressLevel = stressLevelElement ? stressLevelElement.textContent.trim() : 'Low';
+            
+            suggestionDiv.innerHTML = `<span class="text-yellow-400 flex items-center animate-pulse justify-center"><i data-lucide="loader" class="w-4 h-4 mr-2"></i> AI is calculating personalized suggestion...</span>`;
+            lucide.createIcons();
+
+            const userQuery = `The user's current stress level correlation is assessed as "${stressLevel}". The user is currently in a 5-minute break. Suggest one ultra-short, highly effective, personalized mental break or distraction-free activity to maximize recovery from news focus. If the stress is 'High', suggest a calm, physical movement. If the stress is 'Low', suggest a quick mental challenge.`;
+            const systemPrompt = "You are a professional performance coach and mental wellness AI. Provide a single, concise sentence recommendation for a 5-minute break activity. Be enthusiastic.";
+            
+            const result = await callGeminiApi(userQuery, systemPrompt);
+            
+            if (result) {
+                suggestionDiv.textContent = result;
+            } else {
+                suggestionDiv.textContent = "Failed to generate wellness suggestion. Try resetting the timer.";
+            }
+        }
+
+
+        // --- FIREBASE INITIALIZATION & AUTH ---
+
+        async function initializeFirebase() {
+            if (firebaseConfig) {
+                setLogLevel('Debug');
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        authStatus.textContent = `Online (User: ${userId.substring(0, 4)}...)`;
+                        isAuthReady = true;
+                        // Since this is a dashboard, we don't need real-time snapshots immediately, 
+                        // but the LLM calls are now ready.
+                    } else {
+                        try {
+                            if (initialAuthToken) {
+                                await signInWithCustomToken(auth, initialAuthToken);
+                            } else {
+                                await signInAnonymously(auth);
+                            }
+                        } catch (e) {
+                            console.error("Firebase Auth Error:", e);
+                            authStatus.textContent = "Auth Error";
+                        }
+                    }
+                });
+            } else {
+                 console.error("Firebase config is missing.");
+                 authStatus.textContent = "Offline (No Config)";
+                 isAuthReady = true; // Still allow app to run if config missing, though API calls will fail gracefully
+            }
+        }
+
+        // --- 1. Initial Loading and Staggered Reveal ---
+
+        window.onload = function() {
+            initializeFirebase();
+            
+            // Wait for logo animation (1.5s) + transition (1s)
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                
+                // Once the loader fades, show the app container
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    appContainer.classList.remove('hidden');
+                    
+                    // Staggered reveal for initial content (simulating component load)
+                    const skeletonGroup = document.getElementById('skeleton-group');
+                    const articleCard = document.getElementById('article-card');
+                    
+                    if (skeletonGroup) skeletonGroup.style.display = 'none';
+                    if (articleCard) articleCard.style.opacity = '0';
+
+                    setTimeout(() => {
+                        if (articleCard) {
+                            articleCard.style.transition = 'opacity 0.8s ease-out, transform 0.3s ease';
+                            articleCard.style.opacity = '1';
+                        }
+                    }, 100); 
+
+                }, 800); // Wait for opacity transition
+            }, 2500); // Initial wait
+            
+            // Render Lucide Icons
+            lucide.createIcons();
+        };
+
+        // --- 2. Navigation / Page Transition ---
+
+        window.navigate = function(viewName) {
+            if (currentPage === viewName) return;
+
+            // Simple Page Transition Effect (Fade out current, Staggered Fade in new)
+            
+            // 1. Fade out all current content
+            Object.values(contentViews).forEach(view => {
+                view.style.opacity = '0';
+                setTimeout(() => view.classList.add('hidden'), 300);
+            });
+
+            // 2. Update state and Title
+            currentPage = viewName;
+            pageTitle.textContent = viewName.charAt(0).toUpperCase() + viewName.slice(1) + (viewName === 'news' ? ' Feed' : ' View');
+            
+            // 3. Update active navigation item
+            navItems.forEach(item => item.classList.remove('active'));
+            document.querySelector(`[onclick="navigate('${viewName}')"]`).classList.add('active');
+
+
+            // 4. Fade in new content (Staggered appearance)
+            setTimeout(() => {
+                const newView = contentViews[viewName];
+                if (newView) {
+                    newView.classList.remove('hidden');
+                    // Force repaint before applying opacity for smooth transition
+                    newView.offsetWidth; 
+                    newView.style.transition = 'opacity 0.7s ease-in-out';
+                    newView.style.opacity = '1';
+                }
+            }, 300);
+        }
+
+        // Add active style to navigation items
+        document.querySelectorAll('.nav-item').forEach(button => {
+            button.className = 'nav-item w-full flex items-center text-gray-300 p-3 rounded-xl transition duration-300 hover:bg-white/10 active:bg-cyan-700/50';
+            button.style.color = '#E0E7FF'; // Ensure text color is consistent
+        });
+
+        // Set initial active state
+        document.querySelector('[onclick="navigate(\'news\')"]').classList.add('active');
+
+
+        // --- 3. Pomodoro Timer Logic (Feature 6) ---
+
+        function updateTimerDisplay() {
+            const minutes = String(Math.floor(pomodoroTime / 60)).padStart(2, '0');
+            const seconds = String(pomodoroTime % 60).padStart(2, '0');
+            pomodoroDisplay.textContent = `${minutes}:${seconds}`;
+
+            // Pulsing timer effect
+            if (pomodoroState === 'focus' || pomodoroState === 'break') {
+                pomodoroDisplay.style.boxShadow = `0 0 15px 3px ${pomodoroTime % 2 === 0 ? 'var(--color-accent)' : 'rgba(0, 0, 0, 0)'}`;
+                pomodoroDisplay.style.transition = 'box-shadow 1s ease-in-out';
+            } else {
+                pomodoroDisplay.style.boxShadow = 'none';
+            }
+        }
+
+        function timerTick() {
+            if (pomodoroTime <= 0) {
+                clearInterval(pomodoroInterval);
+                const suggestion = document.getElementById('break-suggestion');
+                if (pomodoroState === 'focus') {
+                    pomodoroState = 'break';
+                    pomodoroTime = 5 * 60; // 5 minute break
+                    suggestion.textContent = "Focus complete! Start your 5-minute suggested break.";
+                    pomodoroDisplay.style.color = 'yellow';
+                    startPomodoro(); // Start the break
+                } else if (pomodoroState === 'break') {
+                    pomodoroState = 'stopped';
+                    pomodoroTime = 25 * 60;
+                    suggestion.textContent = "Break complete. Time to start another focus session.";
+                    pomodoroDisplay.style.color = 'white';
+                    alertUser("Focus Session Complete", "Time to reset or start your next task!");
+                }
+                return;
+            }
+            pomodoroTime--;
+            updateTimerDisplay();
+        }
+
+        window.startPomodoro = function() {
+            if (pomodoroState === 'stopped' || pomodoroState === 'break') {
+                if (pomodoroState === 'stopped') {
+                    pomodoroTime = 25 * 60;
+                    pomodoroState = 'focus';
+                    document.getElementById('break-suggestion').textContent = "Focus mode active. Minimize distractions now!";
+                    pomodoroDisplay.style.color = 'white';
+                }
+                pomodoroInterval = setInterval(timerTick, 1000);
+            }
+        }
+
+        window.resetPomodoro = function() {
+            clearInterval(pomodoroInterval);
+            pomodoroState = 'stopped';
+            pomodoroTime = 25 * 60;
+            updateTimerDisplay();
+            pomodoroDisplay.style.color = 'white';
+            document.getElementById('break-suggestion').textContent = "Suggested break activity: Take 10 deep breaths.";
+        }
+
+        // Initialize display
+        updateTimerDisplay();
+
+        // --- 4. Confetti Celebration (Feature 5) ---
+
+        window.triggerConfetti = function(message) {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#00FFFF', '#FF00FF', '#FFFFFF', '#FFD700'];
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'confetti-particle';
+                particle.style.width = particle.style.height = (Math.random() * 10 + 5) + 'px';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.position = 'absolute';
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.borderRadius = '50%';
+                
+                particle.style.transition = 'transform 3s ease-out, opacity 2s ease-out 1s';
+                particle.style.transform = `translate(${Math.random() * 400 - 200}px, ${Math.random() * 400 - 200}px) rotate(${Math.random() * 360}deg)`;
+                particle.style.opacity = '0';
+
+                container.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.style.transform = `translate(${Math.random() * 800 - 400}px, ${Math.random() * -500}px) rotate(${Math.random() * 720}deg)`;
+                    particle.style.opacity = '0';
+                }, 50);
+
+                setTimeout(() => particle.remove(), 3500);
+            }
+            alertUser("Achievement Unlocked!", message);
+        }
+
+        // --- 5. Smart Sync Simulation (Feature 10) ---
+
+        window.simulateSync = function() {
+            const status = document.getElementById('sync-status');
+            const icon = document.getElementById('sync-icon');
+
+            status.textContent = 'Syncing...';
+            status.className = 'text-yellow-400 font-semibold mr-2';
+            icon.className = 'w-5 h-5 text-yellow-400 animate-spin';
+
+            setTimeout(() => {
+                status.textContent = 'Complete';
+                status.className = 'text-green-400 font-semibold mr-2';
+                icon.className = 'w-5 h-5 text-green-400';
+                alertUser("Sync Successful", "Today's digest pre-downloaded for offline reading.");
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
